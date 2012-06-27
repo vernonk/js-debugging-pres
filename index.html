@@ -1,0 +1,257 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>JavaScript Debugging Tips & Best Practices</title>
+
+		<meta name="description" content="Improve your JS debugging skills with debugger tips and new toys for your toolbox.">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/zenburn.css">
+	</head>
+	
+	<body id="js-debugging">
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>JavaScript Debugging</h1>
+					<h3 class="inverted">Tips &amp; Best Practices</h3>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section class="who">
+					<h2>Who is this guy?</h2>
+					<ul>
+						<li>Tech Lead at Ally Financial</li>
+						<li>Freelanced full-time for 8&frac12; years</li>
+						<li>Self-taught <br /><small>(with the help of really smart people)</small></li>
+						<li>Love debugging JS issues... mine and others.</li>
+					</ul>
+					<h3 class="fragment">Okay, so what are we talking about?</h3>
+				</section>
+
+        <section>
+          <h2>Quick tips...</h2>
+          <ul>
+            <li class="fragment">Commenting and Maintainable Code</li>
+            <li class="fragment">Code Linting with JSHint or JSLint</li>
+            <li class="fragment">Implement unit tests</li>
+            <li class="fragment">Follow good and common patterns
+            	<ul>
+            		<li>Minimize your globals</li>
+            		<li>Use your curly braces</li>
+            		<li>Readable variable names</li>
+            	</ul>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h1>Show me the tools!</h1>
+          <p><img src="assets/images/chrome-tools.png" alt="Chrome Tools" /></p>
+          <blockquote>
+          	An architect's most useful tools are an eraser at the drafting board, and a wrecking bar at the site.
+					</blockquote>
+					<p><i><small>Frank Lloyd Wright</small></i></p>
+        </section>
+
+        <section>
+        	<h2>No more alert() please</h2>
+        	<p><img src="assets/images/object-Object.png" alt="Look! It's [object Object]" /></p>
+        </section>
+
+        <section>
+        	<h2>Chrome Tools tricks<br/> you may not know about</h2>
+        	<ul>
+        		<li>It's the cog!</li>
+        		<li>Quick console</li>
+        		<li>Pretty print</li>
+      		</ul>
+        </section>
+
+      	<section>
+      		<h2>Check out the Debugger on that thing</h2>
+      		<ul>
+      			<li class="fragment"><h3>The console is your friend</li>
+      			<li class="fragment"><h3>Breakpoints / Step Debugging</h3></li>
+      			<li class="fragment"><h3>Debugging Ajax</h3></li>
+      			<li class="fragment"><h3>Elements</h3></li>
+      		</ul>
+    		</section>
+
+        <section class="sourcemaps" data-state="sourcemaps">
+        	<h2>60 seconds or less<br/>about Source Maps</h2>
+        	<h3 class="timer">60</h3>
+        </section>
+
+        <section>
+        	<h2>Ask yourself the right questions</h2>
+        	<ul>
+        		<li>Why isn't "x" happening?</li>
+    				<li>Where is the first point of possible failure?</li>
+    				<li>What's the call stack look like?</li> 
+    				<li>What conflicts could there be?</li>
+    				<li>Do the elements exist in the DOM?</li>
+    				<li>Were the elements in the DOM on execution?</li>
+  					<li>What the heck is <span class="monotype">this</span>?</li>
+					</ul>
+        </section>
+
+        <section class="small">
+        	<h2>A Few Common JS Errors</h2>
+        	<p><strong>Syntax Error</strong></p>
+        	<pre><code contenteditable>
+var foo = 'Don't do it!'; //Syntax Error
+
+if(bar) {
+	...
+	...
+
+// Syntax Error
+      		</code></pre>
+        	<p><strong>"X" is undefined</strong></p>
+        		<ul>
+      				<li>Is this coming from another file? Is it loaded?</li>
+      				<li>Is "X" in the same scope chain as you?</li>
+    				</ul>
+        	<p><strong>Trailing comma in your Objects (IE will fall all over itself failing on this)</strong></p>
+        	<pre><code contenteditable>
+var name = {
+	first: 'Vernon',
+	last:  'Kesner',
+};
+      		</code></pre>
+
+      	</section>
+
+      	<section>
+      		<h2>Proxy Debugging</h2>
+      		<p><strong>Charles Proxy</strong> is one of the best kept <br/>secrets in front-end development.</p>
+      		<p><img src="assets/images/charles-in-charge.jpg" alt="Charles Proxy" />
+      			<i class="img-cite">Charles in Charge image: http://www.imdb.com/title/tt0086681/</i></p>
+      		<p><small>* You can also check out Fiddler if you don't want to spend the money.</small>
+  			</section>
+
+  			<section>
+  				<h2>Remote Debugging</h2>
+  				<ul>
+  					<li class="fragment">Charles is still in charge</li>
+  					<li class="fragment">Adobe Shadow</li>
+  					<li class="fragment">Other tools:
+  						<ul>
+		  					<li>Emulators</li>
+		  					<li>weinre [<strong>wee</strong>-ner]</li>
+		  					<li>jsconsole</li>
+	  					</ul>
+  					</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Toolkit Review</h2>
+						<ul>
+							<li>Chrome Tools, Firebug, Firefly, IE Dev Tools</li>
+							<li>FireQuery, Omnibug, FireRainbow</li>
+							<li>Charles Proxy (or Fiddler)</li>
+							<li>CodeKit (or LiveReload)</li>
+							<li>Companion JS (for IE7 console)</li>
+							<li>Adobe Shadow</li>
+							<li>JSShell</li>
+							<li>JSFiddle</li>
+						</ul>
+				</section>
+
+				<section>
+					<h2>Time for a short debugging session</h2>
+					<h3>Woo-hoo!</h3>
+					<p><img src="assets/images/mr-bean.jpg" alt="Mr. Bean" />
+							<i class="img-cite">http://www.fanpop.com/spots/mr-bean/images/166155/title/mr-bean-photo</i></p>
+				</section>
+				
+				<section>
+					<h1>Thank you!</h1>
+					<h3>Any questions?</h3>
+					<ul>
+						<li>Catch me on Twitter <a href="http://twitter.com/vernonk">@vernonk</a></li>
+						<li>Check out the presentation notes on GitHub for links and a copy of the slides: GETSHORTURLFORREPO</li>
+					</ul>
+				</section>
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Displays presentation progress, max value changes via JS to reflect # of slides -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<!-- Optional libraries for code syntax highlighting and classList support in IE9 -->
+		<script src="lib/highlight.js"></script>
+		<script src="lib/classList.js"></script>
+		
+		<script src="js/reveal.min.js"></script>
+		
+		<script>
+			// Parse the query string into a key/value object
+			var query = {};
+			location.search.replace( /[A-Z0-9]+?=(\w*)/gi, function(a) {
+				query[ a.split( '=' ).shift() ] = a.split( '=' ).pop();
+			} );
+
+			Reveal.addEventListener('sourcemaps', function() {
+				var timerEl = document.querySelector('h3.timer');
+				if(timerEl.innerText !== "60") return false;
+				var timer = function() {
+					var nextTime = parseInt(timerEl.innerText, 10) - 1;
+					timerEl.innerText=nextTime;
+					if(nextTime === 0) return;
+					setTimeout(timer, 1000);
+				};
+				setTimeout(timer, 1000);
+			});
+
+			Reveal.initialize({
+				// Display a presentation progress bar
+				progress: true,
+				// If true; each slide will be pushed to the browser history
+				history: true,
+				// Flags if mouse wheel navigation should be enabled
+				mouseWheel: false,
+				// Apply a 3D roll to links on hover
+				rollingLinks: true,
+				// UI style
+				theme: query.theme || 'default', // default/neon
+				// Transition style
+				transition: query.transition || 'default' // default/cube/page/concave/linear(2d)
+			});
+
+			hljs.initHighlightingOnLoad();
+		</script>
+
+	</body>
+</html>
