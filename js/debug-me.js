@@ -1,12 +1,3 @@
-/*
-Errors below:
-
-1. Line 22, 27, 31 - Improper use of this
-2. Line 30 - Use of bind instead of on/delegate
-3. Line 80 - Improper reference
-
-*/
-
 var debugit = {
 
   eatingCookies: false,
@@ -18,20 +9,18 @@ var debugit = {
 
   bindEvents: function() {
 
-    var self = this;
-  
     $("h1 a").bind('click.pres', function(e) {
       e.preventDefault();
-      self.loadCookies();
+      this.loadCookies();
     });
 
     $('#submit').bind('click.pres', function(e) {
       e.preventDefault();
-      self.addCookie();
+      this.addCookie();
     });
 
-    $('.cookies').on('click.pres', 'li', function() {
-      self.eatCookie();
+    $('.cookies li').bind('click.pres', function() {
+      this.eatCookie();
     });
 
   },
@@ -80,7 +69,7 @@ var debugit = {
       url: 'js/cookies.json',
       success: function(data) {
         for(var i = 0, l = data.cookies.length; i<l; i++) {
-          self.addCookie(data.cookies[i]);
+          self.addCookie(data.cookies.i);
         }
       }
     });
